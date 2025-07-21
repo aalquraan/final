@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>🎊 تهانينا الكبرى!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Changa:wght@700&display=swap');
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #000000, #1a1a1a);
+      font-family: 'Changa', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3.5em;
+      color: #ffeb3b;
+      text-shadow: 0 0 20px #ffeb3b;
+      margin-bottom: 10px;
+      animation: bounce 2s infinite;
+    }
+    h2 {
+      font-size: 2em;
+      color: #00e5ff;
+      text-shadow: 0 0 12px #00e5ff;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+    .avatar {
+      width: 150px;
+      height: 150px;
+      background: url('https://i.imgur.com/NKXik9p.png') center center / cover no-repeat;
+      border-radius: 50%;
+      box-shadow: 0 0 25px #00e5ff;
+      margin-bottom: 20px;
+      animation: pulseAvatar 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes pulseAvatar {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .button {
+      padding: 15px 35px;
+      font-size: 1.3em;
+      background: linear-gradient(45deg, #e91e63, #ff9800);
+      border: none;
+      border-radius: 15px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 20px #ff4081;
+      transition: 0.3s;
+      margin: 10px;
+    }
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #ffeb3b;
+    }
+    .confetti, .firework {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+    .confetti {
+      width: 10px;
+      height: 10px;
+      animation: fall 5s linear infinite;
+    }
+    .firework {
+      width: 6px;
+      height: 6px;
+      animation: explode 1s ease-out forwards;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+    @keyframes explode {
+      to {
+        transform: scale(5);
+        opacity: 0;
+      }
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body onclick="launchFirework(event)">
+
+  <div class="avatar"></div>
+  <h1>🎉 كل عام وأنت بخير 🎉</h1>
+  <h2>مبرووووك! خلصت التحديات كلها مثل الأسطورة 💪</h2>
+  <p>اضغط على أي مكان لإطلاق الألعاب النارية! 💥</p>
+
+  <button class="button" onclick="location.reload()">🔁 أعد التحدي من البداية</button>
+  <button class="button" onclick="alert('🚀 قريبًا مستويات مجنونة جديدة!')">✨ استعد للجولة القادمة</button>
+
+  <audio autoplay loop>
+    <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+  </audio>
+
+  <footer> للاسف انتي فزتي بالتحدي :(</footer>
+
+  <script>
+    for (let i = 0; i < 150; i++) {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+      confetti.style.animationDuration = `${3 + Math.random() * 3}s`;
+      confetti.style.opacity = Math.random();
+      document.body.appendChild(confetti);
+    }
+
+    function launchFirework(e) {
+      for (let i = 0; i < 40; i++) {
+        const fw = document.createElement("div");
+        fw.classList.add("firework");
+        fw.style.left = e.clientX + 'px';
+        fw.style.top = e.clientY + 'px';
+        fw.style.background = `hsl(${Math.random()*360}, 100%, 60%)`;
+        fw.style.transform = `translate(-50%, -50%) scale(${Math.random() * 3})`;
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1000);
+      }
+    }
+  </script>
+
+</body>
+</html>
